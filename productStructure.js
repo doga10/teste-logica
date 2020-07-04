@@ -14,5 +14,16 @@ const products = [
 ]
 
 module.exports = () => {
-  // Código aqui
+  return products.reduce((all, current) => {
+    const [ color, size ] = current.split('-')
+
+    if (all[color]) {
+      const s = all[color][size]
+      all[color][size] = s ? s + 1 : 1
+    } else {
+      all[color] = { [size]: 1 }
+    }
+    
+    return all
+  }, {})
 }
